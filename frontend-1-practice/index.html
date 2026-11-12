@@ -1,26 +1,212 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Выбор даты и времени</title>
+    <title>Барбершоп — Выбор даты и времени</title>
+    <link rel="preconnect" href="https://googleapis.com" />
+    <link rel="preconnect" href="https://gstatic.com" crossorigin />
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <!--
-      ЗАДАНИЕ
-      ========
-      Сверстать страницу выбора даты и времени по своему макету.
+</head>
+<body class="barber-app">
 
-      Пока это только вёрстка. Никакого JavaScript — ни кликов,
-      ни переходов, ни выбора дня. Всё статично.
+    <!-- Шапка сайта -->
+    <header class="top-bar">
+        <div class="top-bar__container">
+            <a href="#" class="brand-mark" aria-label="На главную">
+                <img src="images/1.jpg" alt="Логотип барбершопа" class="brand-mark__icon" />
+            </a>
 
-      Стили пишите в styles.css. Разметку — здесь.
-    -->
+            <nav class="main-menu" aria-label="Основная навигация">
+                <a href="#" class="main-menu__link">Услуги</a>
+                <a href="#" class="main-menu__link">Галерея</a>
+                <a href="#" class="main-menu__link">Команда</a>
+                <a href="#" class="main-menu__link">Отзывы</a>
+                <a href="#" class="main-menu__link">Контакты</a>
+            </nav>
+        </div>
+    </header>
 
-    <div class="page">
-      <!-- Начните отсюда. Разметьте шапку, основную область
-           с календарём и слотами, подвал. -->
-    </div>
-  </body>
-</html>
+    <!-- Полоса прогресса (5 шагов) -->
+    <section class="wizard-strip" aria-label="Этапы записи">
+        <div class="wizard-strip__container">
+            <div class="wizard-step wizard-step--completed">
+                <span class="wizard-step__badge">1</span>
+                <span class="wizard-step__track"></span>
+            </div>
+
+            <div class="wizard-step wizard-step--completed">
+                <span class="wizard-step__badge">2</span>
+                <span class="wizard-step__track"></span>
+            </div>
+
+            <div class="wizard-step wizard-step--current">
+                <span class="wizard-step__badge">3</span>
+                <span class="wizard-step__track wizard-step__track--half"></span>
+            </div>
+
+            <div class="wizard-step wizard-step--upcoming">
+                <span class="wizard-step__badge">4</span>
+                <span class="wizard-step__track"></span>
+            </div>
+
+            <div class="wizard-step wizard-step--upcoming">
+                <span class="wizard-step__badge">5</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Основная рабочая область -->
+    <main class="schedule-workspace">
+        <div class="schedule-workspace__container">
+
+            <!-- Плашка с заголовком -->
+            <div class="prompt-banner">
+                <h1 class="prompt-banner__title">Выберите удобное для вас дату и время:</h1>
+            </div>
+
+            <!-- Две карточки: календарь и слоты времени -->
+            <div class="booking-columns">
+
+                <!-- Карточка календаря -->
+                <section class="date-card" aria-label="Выбор даты">
+                    <div class="date-card__head">
+                        <h2 class="date-card__month">Июнь 2025</h2>
+                        <div class="date-card__arrows">
+                            <button type="button" class="month-arrow" aria-label="Предыдущий месяц">&lsaquo;</button>
+                            <button type="button" class="month-arrow" aria-label="Следующий месяц">&rsaquo;</button>
+                        </div>
+                    </div>
+
+                    <div class="weekdays-row">
+                        <span class="weekdays-row__item">Пн</span>
+                        <span class="weekdays-row__item">Вт</span>
+                        <span class="weekdays-row__item">Ср</span>
+                        <span class="weekdays-row__item">Чт</span>
+                        <span class="weekdays-row__item">Пт</span>
+                        <span class="weekdays-row__item">Сб</span>
+                        <span class="weekdays-row__item">Вс</span>
+                    </div>
+
+                    <div class="days-matrix">
+                        <!-- Неделя 1 -->
+                        <span class="day-tile day-tile--muted">26</span>
+                        <span class="day-tile day-tile--muted">27</span>
+                        <span class="day-tile day-tile--muted">28</span>
+                        <span class="day-tile day-tile--muted">29</span>
+                        <span class="day-tile day-tile--muted">30</span>
+                        <span class="day-tile day-tile--muted">31</span>
+                        <span class="day-tile day-tile--muted">1</span>
+
+                        <!-- Неделя 2 -->
+                        <button type="button" class="day-tile day-tile--available">2</button>
+                        <button type="button" class="day-tile day-tile--available">3</button>
+                        <button type="button" class="day-tile day-tile--available">4</button>
+                        <button type="button" class="day-tile day-tile--available">5</button>
+                        <button type="button" class="day-tile day-tile--available">6</button>
+                        <span class="day-tile day-tile--off">7</span>
+                        <span class="day-tile day-tile--off">8</span>
+
+                        <!-- Неделя 3 -->
+                        <button type="button" class="day-tile day-tile--available">9</button>
+                        <button type="button" class="day-tile day-tile--available">10</button>
+                        <button type="button" class="day-tile day-tile--available">11</button>
+                        <button type="button" class="day-tile day-tile--available">12</button>
+                        <button type="button" class="day-tile day-tile--available">13</button>
+                        <button type="button" class="day-tile day-tile--available">14</button>
+                        <button type="button" class="day-tile day-tile--available">15</button>
+
+                        <!-- Неделя 4 -->
+                        <button type="button" class="day-tile day-tile--available">16</button>
+                        <button type="button" class="day-tile day-tile--available">17</button>
+                        <button type="button" class="day-tile day-tile--available">18</button>
+                        <button type="button" class="day-tile day-tile--available">19</button>
+                        <button type="button" class="day-tile day-tile--available">20</button>
+                        <button type="button" class="day-tile day-tile--available">21</button>
+                        <button type="button" class="day-tile day-tile--available">22</button>
+                    </div>
+                </section>
+
+                <!-- Карточка времени -->
+                <section class="slots-card" aria-label="Выбор времени">
+                    <h2 class="slots-card__title">Доступное время</h2>
+
+                    <div class="slots-matrix">
+                        <button type="button" class="slot-btn">
+                            <span class="slot-btn__time">10:00</span>
+                        </button>
+
+                        <button type="button" class="slot-btn slot-btn--busy" disabled>
+                            <span class="slot-btn__time">11:00</span>
+                            <span class="slot-btn__status">Занято</span>
+                        </button>
+
+                        <button type="button" class="slot-btn">
+                            <span class="slot-btn__time">12:00</span>
+                        </button>
+
+                        <button type="button" class="slot-btn slot-btn--busy" disabled>
+                            <span class="slot-btn__time">13:00</span>
+                            <span class="slot-btn__status">Занято</span>
+                        </button>
+
+                        <button type="button" class="slot-btn">
+                            <span class="slot-btn__time">14:00</span>
+                        </button>
+
+                        <button type="button" class="slot-btn">
+                            <span class="slot-btn__time">15:00</span>
+                        </button>
+
+                        <button type="button" class="slot-btn">
+                            <span class="slot-btn__time">16:00</span>
+                        </button>
+
+                        <button type="button" class="slot-btn">
+                            <span class="slot-btn__time">17:00</span>
+                        </button>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Нижняя панель навигации по шагам -->
+            <div class="action-bar">
+                <button type="button" class="action-btn action-btn--back">назад</button>
+                <button type="button" class="action-btn action-btn--next">продолжить</button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="site-footer">
+        <div class="site-footer__container">
+            <div class="site-footer__main">
+                <div class="footer-brand">
+                    <div class="footer-brand__box">
+                        <img src="images/1.jpg" alt="Логотип барбершопа" class="footer-brand__icon" />
+                    </div>
+                    <p class="footer-brand__tagline">Дружелюбное описание услуг</p>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-column__heading">КОНТАКТЫ</h3>
+                    <p class="footer-column__text footer-column__text--muted">
+                        <span class="footer-column__pin" aria-hidden="true">&#9673;</span>
+                        ул. Садовая, 15, Москва
+                    </p>
+                    <a href="tel:+74951234567" class="footer-column__phone">
+                        <span class="footer-column__pin" aria-hidden="true">&#9742;</span>
+                        +7 (495) 123-45-67
+                    </a>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-column__heading">РЕЖИМ РАБОТЫ</h3>
+                    <p class="footer-column__text footer-column__text--muted">Пн–Пт: 9:00 – 21:00</p>
+                    <p class="footer-column__text footer-column__text--muted">Сб–Вс: 10:00 – 19:00</p>
+                </div>
+            </div>
+
