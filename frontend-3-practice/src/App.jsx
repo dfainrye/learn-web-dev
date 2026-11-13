@@ -1,57 +1,118 @@
-// App — корневой компонент приложения.
-//
-// ЗАДАНИЕ
-// --------
-// Перенесите свою страницу выбора даты и времени из нативного JS
-// на React. У вас уже есть:
-//   - готовая вёрстка (HTML);
-//   - готовые стили (CSS);
-//   - рабочий код на нативном JS (валидация дат, рендер календаря,
-//     обработчики кликов, выбор слота).
-//
-// Теперь нужно то же самое сделать в React.
-//
-// ЧТО НУЖНО СДЕЛАТЬ
-// ------------------
-// 1. Разбить страницу на компоненты. Как именно — решайте сами.
-//    Обычно выделяют: шапку, подвал, календарь, сетку слотов,
-//    нижнюю панель.
-//
-// 2. Перенести вёрстку из HTML в JSX. Стили оставить как есть,
-//    просто положить их в тот же проект (например, в src/styles/
-//    или рядом с компонентами).
-//
-// 3. Заменить нативное состояние (переменные + прямые манипуляции
-//    с DOM) на useState. Какие именно данные должны жить в состоянии —
-//    подумайте сами. Скорее всего: текущий месяц, выбранный день,
-//    выбранное время, массив слотов.
-//
-// 4. Рендер календаря и слотов делать через JSX и .map(),
-//    без innerHTML и querySelector.
-//
-// 5. Обработчики кликов — через onClick прямо в JSX,
-//    без addEventListener.
-//
-// 6. Функции для работы с датами, которые вы уже написали
-//    на нативном JS (построение сетки календаря, сравнение дат,
-//    проверка «не раньше сегодня»), можно переиспользовать.
-//    Они чистые — не зависят от React. Создайте файл
-//    src/utils/date.js и перенесите их туда.
-//
-//
-// ПОДСКАЗКА
-// ---------
-// Если что-то не работает или непонятно, как перевести нативный
-// код на React — вернитесь к лекции. Там разбирались все
-// основные приёмы: состояние, пропсы, рендер списков, колбэки.
-//
-// Ниже — пустой каркас. Здесь можно начать писать.
+import { useState } from "react";
+import Header from "./components/Header";
+import WizardSteps from "./components/WizardSteps";
+import CalendarSection from "./components/CalendarSection";
+import TimeSlotsSection from "./components/TimeSlotsSection";
+import ActionBar from "./components/ActionBar";
+import Footer from "./components/Footer";
+import { MONTHS_GENITIVE, getSlotsForDay } from "./utils/date";
+
+const now = new Date();
+const TODAY = {
+  day: now.getDate(),
+  month: now.getMonth(),
+  year: now.getFullYear(),
+};
 
 function App() {
+  const [currentMonth, setCurrentMonth] = useState(TODAY.month);
+  const [currentYear, setCurrentYear] = useState(TODAY.year);
+  const [selectedDate, setSelectedDate] = useState({
+    day: TODAY.day,
+    month: TODAY.month,
+    year: TODAY.year,
+  });
+  const [selectedTime, setSelectedTime] = useState(null);
+  const [slots, setSlots] = useState(() => getSlotsForDay(TODAY.day));
+
+  function handleDayClick(day) {
+    setSelectedDate({
+      day,
+      month: currentMonth,
+      year: currentYear,
+    });
+    setSelectedTime(null);
+    setSlots(getSlotsForDay(day));
+  }
+
+  function handleTimeClick(time) {
+    setSelectedTime(time);
+  }
+
+  function handlePrevMonth() {
+    if (currentMonth === 0) {
+      setCurrentMonth(11);
+      setCurrentYear(currentYear - 1);
+    } else {
+      setCurrentMonth(currentMonth - 1);
+    }
+  }
+
+  function handleNextMonth() {
+    if (currentMonth === 11) {
+      setCurrentMonth(0);
+      setCurrentYear(currentYear + 1);
+    } else {
+      setCurrentMonth(currentMonth + 1);
+    }
+  }
+
+  function handleBack() {
+    alert("Возврат к выбору услуги/мастера");
+  }
+
+  function handleNext() {
+    if (!selectedTime) {
+      alert("Пожалуйста, выберите удобное время");
+      return;
+    }
+
+    alert(
+      `Запись выбрана: ${selectedDate.day} ${MONTHS_GENITIVE[selectedDate.month]} ${selectedDate.year} в ${selectedTime}`
+    );
+  }
+
   return (
-    <div>
-      {/* Начните отсюда. Например, разметьте .page, добавьте шапку,
-            основную область, подвал. */}
+    <div className="barber-app">
+      <Header />
+      <WizardSteps currentStep={3} />
+
+      <main className="schedule-workspace">
+        <div className="schedule-workspace__container">
+          <div className="prompt-banner">
+            <h1 className="prompt-banner__title">
+              Выберите удобное для вас дату и время:
+            </h1>
+          </div>
+
+          <div className="booking-columns">
+            <CalendarSection
+              year={currentYear}
+              month={currentMonth}
+              selectedDate={selectedDate}
+              today={TODAY}
+              onDayClick={handleDayClick}
+              onPrevMonth={handlePrevMonth}
+              onNextMonth={handleNextMonth}
+            />
+
+            <TimeSlotsSection
+              slots={slots}
+              selectedTime={selectedTime}
+              onTimeClick={handleTimeClick}
+            />
+          </div>
+
+          <ActionBar
+            selectedDate={selectedDate}
+            selectedTime={selectedTime}
+            onBack={handleBack}
+            onNext={handleNext}
+          />
+        </div>
+      </main>
+
+      <Footer />
     </div>
   );
 }
