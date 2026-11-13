@@ -1,14 +1,160 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Выбор даты и времени</title>
+    <title>Барбершоп — Выбор даты и времени</title>
+    <link rel="preconnect" href="https://googleapis.com" />
+    <link rel="preconnect" href="https://gstatic.com" crossorigin />
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="page">
-      <!-- Перенесите вашу верстку. Удалите статичные данные. Подключите скрипт -->
-    </div>
-  </body>
+</head>
+<body class="barber-app">
+
+    <!-- Шапка сайта -->
+    <header class="top-bar">
+        <div class="top-bar__container">
+            <a href="#" class="brand-mark" aria-label="На главную">
+                <img src="images/1.jpg" alt="Логотип барбершопа" class="brand-mark__icon" />
+            </a>
+
+            <nav class="main-menu" aria-label="Основная навигация">
+                <a href="#" class="main-menu__link">Услуги</a>
+                <a href="#" class="main-menu__link">Галерея</a>
+                <a href="#" class="main-menu__link">Команда</a>
+                <a href="#" class="main-menu__link">Отзывы</a>
+                <a href="#" class="main-menu__link">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Полоса прогресса (5 шагов) -->
+    <section class="wizard-strip" aria-label="Этапы записи">
+        <div class="wizard-strip__container">
+            <div class="wizard-step wizard-step--completed">
+                <span class="wizard-step__badge">1</span>
+                <span class="wizard-step__track"></span>
+            </div>
+
+            <div class="wizard-step wizard-step--completed">
+                <span class="wizard-step__badge">2</span>
+                <span class="wizard-step__track"></span>
+            </div>
+
+            <div class="wizard-step wizard-step--current">
+                <span class="wizard-step__badge">3</span>
+                <span class="wizard-step__track wizard-step__track--half"></span>
+            </div>
+
+            <div class="wizard-step wizard-step--upcoming">
+                <span class="wizard-step__badge">4</span>
+                <span class="wizard-step__track"></span>
+            </div>
+
+            <div class="wizard-step wizard-step--upcoming">
+                <span class="wizard-step__badge">5</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Основная рабочая область -->
+    <main class="schedule-workspace">
+        <div class="schedule-workspace__container">
+
+            <!-- Плашка с заголовком -->
+            <div class="prompt-banner">
+                <h1 class="prompt-banner__title">Выберите удобное для вас дату и время:</h1>
+            </div>
+
+            <!-- Две карточки: календарь и слоты времени -->
+            <div class="booking-columns">
+
+                <!-- Карточка календаря -->
+                <section class="date-card" aria-label="Выбор даты">
+                    <div class="date-card__head">
+                        <h2 class="date-card__month">Июнь 2025</h2>
+                        <div class="date-card__arrows">
+                            <button type="button" class="month-arrow month-arrow--prev" aria-label="Предыдущий месяц">&lsaquo;</button>
+                            <button type="button" class="month-arrow month-arrow--next" aria-label="Следующий месяц">&rsaquo;</button>
+                        </div>
+                    </div>
+
+                    <div class="weekdays-row">
+                        <span class="weekdays-row__item">Пн</span>
+                        <span class="weekdays-row__item">Вт</span>
+                        <span class="weekdays-row__item">Ср</span>
+                        <span class="weekdays-row__item">Чт</span>
+                        <span class="weekdays-row__item">Пт</span>
+                        <span class="weekdays-row__item">Сб</span>
+                        <span class="weekdays-row__item">Вс</span>
+                    </div>
+
+                    <!-- Контейнер для ячеек дней (заполняется через JS) -->
+                    <div class="days-matrix"></div>
+                </section>
+
+                <!-- Карточка времени -->
+                <section class="slots-card" aria-label="Выбор времени">
+                    <h2 class="slots-card__title">Доступное время</h2>
+
+                    <!-- Контейнер для слотов времени (заполняется через JS) -->
+                    <div class="slots-matrix"></div>
+                </section>
+
+            </div>
+
+            <!-- Нижняя панель навигации и статуса выбора -->
+            <div class="action-bar">
+                <button type="button" class="action-btn action-btn--back">назад</button>
+
+                <div class="action-bar__summary">
+                    <span class="action-bar__label">Выбранная дата и время:</span>
+                    <span class="action-bar__value">время не выбрано</span>
+                </div>
+
+                <button type="button" class="action-btn action-btn--next">продолжить</button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="site-footer">
+        <div class="site-footer__container">
+            <div class="site-footer__main">
+                <div class="footer-brand">
+                    <div class="footer-brand__box">
+                        <img src="images/1.jpg" alt="Логотип барбершопа" class="footer-brand__icon" />
+                    </div>
+                    <p class="footer-brand__tagline">Дружелюбное описание услуг</p>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-column__heading">КОНТАКТЫ</h3>
+                    <p class="footer-column__text footer-column__text--muted">
+                        <span class="footer-column__pin" aria-hidden="true">&#9673;</span>
+                        ул. Садовая, 15, Москва
+                    </p>
+                    <a href="tel:+74951234567" class="footer-column__phone">
+                        <span class="footer-column__pin" aria-hidden="true">&#9742;</span>
+                        +7 (495) 123-45-67
+                    </a>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-column__heading">РЕЖИМ РАБОТЫ</h3>
+                    <p class="footer-column__text footer-column__text--muted">Пн–Пт: 9:00 – 21:00</p>
+                    <p class="footer-column__text footer-column__text--muted">Сб–Вс: 10:00 – 19:00</p>
+                </div>
+            </div>
+
+            <div class="site-footer__bottom">
+                <span class="site-footer__copyright">&copy; 2026. Все права защищены.</span>
+                <a href="#" class="site-footer__policy">Политика конфиденциальности</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
 </html>
