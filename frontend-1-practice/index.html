@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Барбершоп — Выбор даты и времени</title>
-    <link rel="preconnect" href="https://googleapis.com" />
-    <link rel="preconnect" href="https://gstatic.com" crossorigin />
-    <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="barber-app">
 
@@ -15,7 +15,7 @@
     <header class="top-bar">
         <div class="top-bar__container">
             <a href="#" class="brand-mark" aria-label="На главную">
-                <img src="images/1.jpg" alt="Логотип барбершопа" class="brand-mark__icon" />
+                <img src="images/1.jpg" alt="Логотип барбершопа" class="brand-mark__icon">
             </a>
 
             <nav class="main-menu" aria-label="Основная навигация">
@@ -28,31 +28,46 @@
         </div>
     </header>
 
-    <!-- Полоса прогресса (5 шагов) -->
+    <!-- Полоса прогресса (5 этапов с названиями и короткими штрихами) -->
     <section class="wizard-strip" aria-label="Этапы записи">
         <div class="wizard-strip__container">
             <div class="wizard-step wizard-step--completed">
-                <span class="wizard-step__badge">1</span>
+                <div class="wizard-step__item">
+                    <span class="wizard-step__badge">1</span>
+                    <span class="wizard-step__label">Выбор мастера</span>
+                </div>
                 <span class="wizard-step__track"></span>
             </div>
 
             <div class="wizard-step wizard-step--completed">
-                <span class="wizard-step__badge">2</span>
+                <div class="wizard-step__item">
+                    <span class="wizard-step__badge">2</span>
+                    <span class="wizard-step__label">Выбор услуги</span>
+                </div>
                 <span class="wizard-step__track"></span>
             </div>
 
             <div class="wizard-step wizard-step--current">
-                <span class="wizard-step__badge">3</span>
-                <span class="wizard-step__track wizard-step__track--half"></span>
-            </div>
-
-            <div class="wizard-step wizard-step--upcoming">
-                <span class="wizard-step__badge">4</span>
+                <div class="wizard-step__item">
+                    <span class="wizard-step__badge">3</span>
+                    <span class="wizard-step__label">Дата и время</span>
+                </div>
                 <span class="wizard-step__track"></span>
             </div>
 
             <div class="wizard-step wizard-step--upcoming">
-                <span class="wizard-step__badge">5</span>
+                <div class="wizard-step__item">
+                    <span class="wizard-step__badge">4</span>
+                    <span class="wizard-step__label">Профиль</span>
+                </div>
+                <span class="wizard-step__track"></span>
+            </div>
+
+            <div class="wizard-step wizard-step--upcoming">
+                <div class="wizard-step__item">
+                    <span class="wizard-step__badge">5</span>
+                    <span class="wizard-step__label">Подтверждение</span>
+                </div>
             </div>
         </div>
     </section>
@@ -61,15 +76,13 @@
     <main class="schedule-workspace">
         <div class="schedule-workspace__container">
 
-            <!-- Плашка с заголовком -->
             <div class="prompt-banner">
                 <h1 class="prompt-banner__title">Выберите удобное для вас дату и время:</h1>
             </div>
 
-            <!-- Две карточки: календарь и слоты времени -->
             <div class="booking-columns">
 
-                <!-- Карточка календаря -->
+                <!-- Левая карточка: календарь -->
                 <section class="date-card" aria-label="Выбор даты">
                     <div class="date-card__head">
                         <h2 class="date-card__month">Июнь 2025</h2>
@@ -90,7 +103,6 @@
                     </div>
 
                     <div class="days-matrix">
-                        <!-- Неделя 1 -->
                         <span class="day-tile day-tile--muted">26</span>
                         <span class="day-tile day-tile--muted">27</span>
                         <span class="day-tile day-tile--muted">28</span>
@@ -99,16 +111,14 @@
                         <span class="day-tile day-tile--muted">31</span>
                         <span class="day-tile day-tile--muted">1</span>
 
-                        <!-- Неделя 2 -->
-                        <button type="button" class="day-tile day-tile--available">2</button>
+                        <button type="button" class="day-tile day-tile--available day-tile--selected">2</button>
                         <button type="button" class="day-tile day-tile--available">3</button>
                         <button type="button" class="day-tile day-tile--available">4</button>
                         <button type="button" class="day-tile day-tile--available">5</button>
                         <button type="button" class="day-tile day-tile--available">6</button>
-                        <span class="day-tile day-tile--off">7</span>
-                        <span class="day-tile day-tile--off">8</span>
+                        <span class="day-tile day-tile--muted">7</span>
+                        <span class="day-tile day-tile--muted">8</span>
 
-                        <!-- Неделя 3 -->
                         <button type="button" class="day-tile day-tile--available">9</button>
                         <button type="button" class="day-tile day-tile--available">10</button>
                         <button type="button" class="day-tile day-tile--available">11</button>
@@ -117,7 +127,6 @@
                         <button type="button" class="day-tile day-tile--available">14</button>
                         <button type="button" class="day-tile day-tile--available">15</button>
 
-                        <!-- Неделя 4 -->
                         <button type="button" class="day-tile day-tile--available">16</button>
                         <button type="button" class="day-tile day-tile--available">17</button>
                         <button type="button" class="day-tile day-tile--available">18</button>
@@ -128,7 +137,7 @@
                     </div>
                 </section>
 
-                <!-- Карточка времени -->
+                <!-- Правая карточка: доступное время -->
                 <section class="slots-card" aria-label="Выбор времени">
                     <h2 class="slots-card__title">Доступное время</h2>
 
@@ -159,7 +168,7 @@
                             <span class="slot-btn__time">15:00</span>
                         </button>
 
-                        <button type="button" class="slot-btn">
+                        <button type="button" class="slot-btn slot-btn--selected">
                             <span class="slot-btn__time">16:00</span>
                         </button>
 
@@ -171,7 +180,7 @@
 
             </div>
 
-            <!-- Нижняя панель навигации по шагам -->
+            <!-- Нижняя панель навигации -->
             <div class="action-bar">
                 <button type="button" class="action-btn action-btn--back">назад</button>
                 <button type="button" class="action-btn action-btn--next">продолжить</button>
@@ -186,7 +195,7 @@
             <div class="site-footer__main">
                 <div class="footer-brand">
                     <div class="footer-brand__box">
-                        <img src="images/1.jpg" alt="Логотип барбершопа" class="footer-brand__icon" />
+                        <img src="images/1.jpg" alt="Логотип барбершопа" class="footer-brand__icon">
                     </div>
                     <p class="footer-brand__tagline">Дружелюбное описание услуг</p>
                 </div>
@@ -210,3 +219,12 @@
                 </div>
             </div>
 
+            <div class="site-footer__bottom">
+                <span class="site-footer__copyright">&copy; 2026. Все права защищены.</span>
+                <a href="#" class="site-footer__policy">Политика конфиденциальности</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
