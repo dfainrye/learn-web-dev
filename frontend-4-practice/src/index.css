@@ -582,9 +582,10 @@
     text-decoration: underline;
     transition: color 0.15s ease;
 }
-    .site-footer__policy:hover {
+.site-footer__policy:hover {
         color: #ffffff;
-    }
+
+}
 
 /* ===== Заглушки загрузки и ошибок ===== */
 .page-status,
